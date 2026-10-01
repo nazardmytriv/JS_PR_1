@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 3 - Працівники</title>
+</head>
+<body>
+  <p>Результати розрахунків виведено у консоль (F12).</p>
+  <script>
+    const employees = [
+      { name: "Дмитро", position: "Junior", salary: 1000, years: 1 },
+      { name: "Олена", position: "Middle", salary: 2500, years: 3 },
+      { name: "Тарас", position: "Senior", salary: 5000, years: 7 }
+    ];
+
+    // Обчислюємо середню зарплату
+    function getAverageSalary(arr) {
+      if (arr.length === 0) return 0;
+      const totalSalary = arr.reduce((sum, emp) => sum + emp.salary, 0);
+      return totalSalary / arr.length;
+    }
+
+    // Повертаємо об'єкт працівника з найбільшим досвідом
+    function findMostExperiencedEmployee(arr) {
+      return arr.reduce((mostExp, current) => {
+        return (current.years > mostExp.years) ? current : mostExp;
+      });
+    }
+
+    console.log("Середня зарплата:", getAverageSalary(employees));
+    console.log("Найдосвідченіший працівник:", findMostExperiencedEmployee(employees));
+  </script>
+</body>
+</html>

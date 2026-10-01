@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 2 - Студенти</title>
+</head>
+<body>
+  <p>Результати згрупованих та відсортованих студентів виведено у консоль (F12).</p>
+  <script>
+    const students = [
+      { name: "Іван", age: 20, grade: 85, group: "КН-21" },
+      { name: "Анна", age: 19, grade: 95, group: "КН-21" },
+      { name: "Олег", age: 21, grade: 75, group: "ПІ-22" },
+      { name: "Марія", age: 20, grade: 92, group: "ПІ-22" }
+    ];
+
+    // Групуємо студентів за групами
+    function groupBy(arr) {
+      return arr.reduce((acc, student) => {
+        // Якщо такої групи ще немає в акумуляторі - створюємо для неї порожній масив
+        if (!acc[student.group]) {
+          acc[student.group] = [];
+        }
+        acc[student.group].push(student);
+        return acc;
+      }, {});
+    }
+
+    // Сортуємо студентів за оцінками (спадання)
+    function sortStudentsByGrade(arr) {
+      // Робимо копію масиву через spread [...arr], щоб не мутувати оригінал
+      return [...arr].sort((a, b) => b.grade - a.grade);
+    }
+
+    console.log("Згруповані студенти:", groupBy(students));
+    console.log("Відсортовані за рейтингом:", sortStudentsByGrade(students));
+  </script>
+</body>
+</html>

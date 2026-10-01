@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 6 - Об'єднання даних</title>
+</head>
+<body>
+  <p>Перегляньте загальні доходи від продажу товарів у консолі (F12).</p>
+  <script>
+    const products = [
+      { productId: 101, name: "Телефон", price: 10000 },
+      { productId: 102, name: "Чохол", price: 500 },
+      { productId: 103, name: "Навушники", price: 2000 }
+    ];
+
+    const purchases = [
+      { purchaseId: 1, productId: 101, quantity: 2 },
+      { purchaseId: 2, productId: 102, quantity: 5 },
+      { purchaseId: 3, productId: 101, quantity: 1 } // Ще один телефон
+    ];
+
+    // Об'єднує дані та рахує загальну виручку по кожному товару
+    function getTotalSales(prods, purchs) {
+      return purchs.reduce((acc, purchase) => {
+        // Знаходимо товар за productId
+        const product = prods.find(p => p.productId === purchase.productId);
+        
+        if (product) {
+          const revenue = product.price * purchase.quantity;
+          
+          // Додаємо виручку. Якщо ключ ще не існує, ініціалізуємо нулем
+          if (!acc[product.name]) {
+            acc[product.name] = 0;
+          }
+          acc[product.name] += revenue;
+        }
+        return acc;
+      }, {});
+    }
+
+    console.log("Загальний дохід з продажів:", getTotalSales(products, purchases));
+  </script>
+</body>
+</html>

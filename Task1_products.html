@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 1 - Товари</title>
+</head>
+<body>
+  <p>Відкрийте консоль (F12), щоб переглянути результати.</p>
+  <script>
+    const products = [
+      { name: "Ноутбук", category: "Електроніка", price: 25000, inStock: 5 },
+      { name: "Мишка", category: "Периферія", price: 500, inStock: 0 },
+      { name: "Клавіатура", category: "Периферія", price: 1200, inStock: 15 }
+    ];
+
+    // Повертає масив товарів, у яких inStock більше 0
+    function getAvailableProducts(arr) {
+      return arr.filter(product => product.inStock > 0);
+    }
+
+    // Повертає об'єкт з товаром або повідомлення "Товар не знайдено"
+    function findProductByName(arr, productName) {
+      const product = arr.find(p => p.name.toLowerCase() === productName.toLowerCase());
+      return product !== undefined ? product : "Товар не знайдено";
+    }
+
+    console.log("Доступні товари:", getAvailableProducts(products));
+    
+    let searchName = prompt("Введіть назву товару для пошуку (наприклад, Ноутбук):");
+    console.log("Результат пошуку:", findProductByName(products, searchName || ""));
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 4 - Книги</title>
+</head>
+<body>
+  <p>Результати обробки книг у консолі (F12).</p>
+  <script>
+    const books = [
+      { title: "Кобзар", author: "Тарас Шевченко", year: 1840, rating: 5.0, isRead: true },
+      { title: "Захар Беркут", author: "Іван Франко", year: 1883, rating: 4.8, isRead: false },
+      { title: "Тигролови", author: "Іван Багряний", year: 1944, rating: 4.9, isRead: false },
+      { title: "Тіні забутих предків", author: "Михайло Коцюбинський", year: 1911, rating: 3.9, isRead: true }
+    ];
+
+    // Повертає масив НАЗВ непрочитаних книг (використаємо reduce для практики)
+    function getUnreadBooks(arr) {
+      return arr.reduce((acc, book) => {
+        if (!book.isRead) {
+          acc.push(book.title);
+        }
+        return acc;
+      }, []);
+    }
+
+    // Фільтруємо за автором і сортуємо за роком (зростання)
+    function getBooksByAuthor(arr, authorName) {
+      return arr
+        .filter(book => book.author === authorName)
+        .sort((a, b) => a.year - b.year);
+    }
+
+    // Фільтруємо за рейтингом > 4 і сортуємо (спадання)
+    function getTopRatedBooks(arr) {
+      return arr
+        .filter(book => book.rating > 4)
+        .sort((a, b) => b.rating - a.rating);
+    }
+
+    console.log("Непрочитані книги:", getUnreadBooks(books));
+    console.log("Книги Івана Франка:", getBooksByAuthor(books, "Іван Франко"));
+    console.log("Топ рейтингу:", getTopRatedBooks(books));
+  </script>
+</body>
+</html>
